@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Production build output (built by GitHub Actions)
+dist/
+dist-ssr/
+
+# Vite & TypeScript caches
+.vite/
+*.tsbuildinfo
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs & env
+*.log
+npm-debug.log*
+.env
+.env.*
+*.local

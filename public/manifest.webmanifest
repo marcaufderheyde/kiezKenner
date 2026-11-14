@@ -1,0 +1,19 @@
+{
+  "name": "KiezKenner — Berlin Geography & Transit",
+  "short_name": "KiezKenner",
+  "description": "Learn Berlin's 96 Ortsteile, inner-city Kieze, borders, and U/S-Bahn network.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

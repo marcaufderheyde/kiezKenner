@@ -1,0 +1,265 @@
+:root {
+  /* Light & dark raw tokens */
+  --bg-page-light: #f4f1ea;
+  --bg-page-dark: #0b1120;
+
+  --surface-light: rgba(255, 253, 249, 0.92);
+  --surface-dark: rgba(15, 23, 42, 0.9);
+
+  --surface-solid-light: #fffdf9;
+  --surface-solid-dark: #0f172a;
+
+  --surface-elevated-light: #ebe6dc;
+  --surface-elevated-dark: #1e293b;
+
+  --border-light: rgba(15, 23, 42, 0.12);
+  --border-dark: rgba(148, 163, 184, 0.22);
+
+  --text-primary-light: #0f172a;
+  --text-primary-dark: #f8fafc;
+
+  --text-muted-light: #475569;
+  --text-muted-dark: #94a3b8;
+
+  --accent-light: #0d9488;
+  --accent-dark: #2dd4bf;
+
+  --accent-text-light: #ffffff;
+  --accent-text-dark: #042f2e;
+
+  --success-light: #059669;
+  --success-dark: #34d399;
+
+  --warning-light: #d97706;
+  --warning-dark: #fbbf24;
+
+  --danger-light: #dc2626;
+  --danger-dark: #f87171;
+
+  /* Default (light) fallbacks for browsers without light-dark() */
+  --bg-page: var(--bg-page-light);
+  --surface: var(--surface-light);
+  --surface-solid: var(--surface-solid-light);
+  --surface-elevated: var(--surface-elevated-light);
+  --border: var(--border-light);
+  --text-primary: var(--text-primary-light);
+  --text-muted: var(--text-muted-light);
+  --accent: var(--accent-light);
+  --accent-text: var(--accent-text-light);
+  --success: var(--success-light);
+  --warning: var(--warning-light);
+  --danger: var(--danger-light);
+
+  @media (prefers-color-scheme: dark) {
+    --bg-page: var(--bg-page-dark);
+    --surface: var(--surface-dark);
+    --surface-solid: var(--surface-solid-dark);
+    --surface-elevated: var(--surface-elevated-dark);
+    --border: var(--border-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-muted: var(--text-muted-dark);
+    --accent: var(--accent-dark);
+    --accent-text: var(--accent-text-dark);
+    --success: var(--success-dark);
+    --warning: var(--warning-dark);
+    --danger: var(--danger-dark);
+  }
+
+  /* MANDATORY: Keep base color-scheme as light dark, mapped back from <meta> */
+  color-scheme: light dark;
+
+  &:has(> head > meta[name='color-scheme'][content='dark']) {
+    color-scheme: dark;
+    --bg-page: var(--bg-page-dark);
+    --surface: var(--surface-dark);
+    --surface-solid: var(--surface-solid-dark);
+    --surface-elevated: var(--surface-elevated-dark);
+    --border: var(--border-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-muted: var(--text-muted-dark);
+    --accent: var(--accent-dark);
+    --accent-text: var(--accent-text-dark);
+    --success: var(--success-dark);
+    --warning: var(--warning-dark);
+    --danger: var(--danger-dark);
+  }
+
+  &:has(> head > meta[name='color-scheme'][content='light']) {
+    color-scheme: light;
+    --bg-page: var(--bg-page-light);
+    --surface: var(--surface-light);
+    --surface-solid: var(--surface-solid-light);
+    --surface-elevated: var(--surface-elevated-light);
+    --border: var(--border-light);
+    --text-primary: var(--text-primary-light);
+    --text-muted: var(--text-muted-light);
+    --accent: var(--accent-light);
+    --accent-text: var(--accent-text-light);
+    --success: var(--success-light);
+    --warning: var(--warning-light);
+    --danger: var(--danger-light);
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --bg-page: light-dark(var(--bg-page-light), var(--bg-page-dark));
+    --surface: light-dark(var(--surface-light), var(--surface-dark));
+    --surface-solid: light-dark(var(--surface-solid-light), var(--surface-solid-dark));
+    --surface-elevated: light-dark(var(--surface-elevated-light), var(--surface-elevated-dark));
+    --border: light-dark(var(--border-light), var(--border-dark));
+    --text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
+    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
+    --accent: light-dark(var(--accent-light), var(--accent-dark));
+    --accent-text: light-dark(var(--accent-text-light), var(--accent-text-dark));
+    --success: light-dark(var(--success-light), var(--success-dark));
+    --warning: light-dark(var(--warning-light), var(--warning-dark));
+    --danger: light-dark(var(--danger-light), var(--danger-dark));
+  }
+
+  accent-color: var(--accent);
+  scrollbar-color: light-dark(#94a3b8, #475569) light-dark(#e2e8f0, #0f172a);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  inline-size: 100%;
+  block-size: 100dvh;
+  overflow: clip;
+  overscroll-behavior: none;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family:
+    'Inter',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+#app {
+  inline-size: 100%;
+  block-size: 100dvh;
+  position: relative;
+  overflow: clip;
+}
+
+canvas.maplibregl-canvas {
+  display: block;
+}
+
+/* Theme icon branching following selector-atrule + meta state */
+.theme-icon-light {
+  display: none;
+}
+.theme-icon-dark {
+  display: inline-flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name='color-scheme'][content='light'])) .theme-icon-dark {
+    display: none;
+  }
+  :root:not(:has(> head > meta[name='color-scheme'][content='light'])) .theme-icon-light {
+    display: inline-flex;
+  }
+}
+
+:root:has(> head > meta[name='color-scheme'][content='dark']) .theme-icon-dark {
+  display: none;
+}
+:root:has(> head > meta[name='color-scheme'][content='dark']) .theme-icon-light {
+  display: inline-flex;
+}
+
+/* Native <dialog> modal scroll containment (MANDATORY per modern-web-guidance) */
+dialog:modal {
+  overscroll-behavior: contain;
+  margin: auto;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0;
+  inline-size: min(94dvw, 520px);
+  max-block-size: 86dvh;
+  background-color: var(--surface-solid);
+  color: var(--text-primary);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+dialog::backdrop {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  background-color: rgba(2, 6, 23, 0.58);
+  backdrop-filter: blur(6px);
+}
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: clip;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.tap-target {
+  min-inline-size: 48px;
+  min-block-size: 48px;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.95;
+  }
+  70% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+.station-pulse-marker {
+  inline-size: 26px;
+  block-size: 26px;
+  border-radius: 999px;
+  position: relative;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+}
+
+.station-pulse-marker::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 999px;
+  border: 3px solid #f59e0b;
+  animation: pulse-ring 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+.station-pulse-marker::after {
+  content: '';
+  inline-size: 14px;
+  block-size: 14px;
+  border-radius: 999px;
+  background: #f59e0b;
+  border: 3px solid #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
